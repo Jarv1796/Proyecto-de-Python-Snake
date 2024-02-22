@@ -2,7 +2,7 @@
 """
 Estudiante: José Andrés Rodríguez Vásquez B46007.
 Esta es una versión del videojuego Snake creada en Python y con
-ayuda de la biblioteca PyGame. Se verificó que el código 
+ayuda de la biblioteca PyGame. Se verificó que el código
 cumpliera con PEP-8 con la herramienta flake8.
 """
 import pygame
@@ -104,7 +104,8 @@ def mostrar_texto_dificultad(pantalla, dificultad_seleccionada, fuente):
     texto_dificultad = fuente.render(
         f"Dificultad: {dificultad_seleccionada}", True, CYAN
     )
-    pantalla.blit(texto_dificultad, (450, 50))  # Mostrar texto en (x,y) posición
+    # Mostrar texto en (x,y) posición
+    pantalla.blit(texto_dificultad, (450, 50))
 
 
 # Función para jugar
@@ -116,7 +117,7 @@ def jugar_nivel(dificultad):
     pygame.quit()
 
     # Ejecutar el juego en la dificultad seleccionada (como argumento)
-    subprocess.run(["python", archivo, dificultad])
+    subprocess.run(["python3", archivo, dificultad])
 
     # Una vez finalizado el juego
     # Volver a abrir el menú principal
@@ -155,7 +156,8 @@ def seleccionar_dificultad(dificultad_actual):
                 x, y = pygame.mouse.get_pos()
                 if 300 <= x <= 500 and 200 <= y <= 250:
                     # Opción Fácil
-                    efectos_sonido["clic"].play()  # Reproducir efecto de sonido
+                    # Reproducir efecto de sonido
+                    efectos_sonido["clic"].play()
                     # Cambiar la dificultad a fácil
                     dificultad_seleccionada = "Fácil"
                 elif 300 <= x <= 500 and 300 <= y <= 350:
@@ -202,9 +204,9 @@ def mostrar_controles():
     fuente = pygame.font.Font(None, 36)
     texto_controles = fuente.render("Controles:", True, BLANCO)
     texto_flechas = fuente.render(
-        "Utiliza ↑↓←→ para mover a la serpiente.", True, BLANCO
+        "Utiliza las FLECHAS para mover a la serpiente.", True, BLANCO
     )
-    texto_pausa = fuente.render("Presiona ESPACIO para pausar el juego.", True, BLANCO)
+    texto_pausa = fuente.render("Presiona ESPACIO para pausar el juego.", True, BLANCO) # noqa
     opcion_volver = fuente.render("Volver", True, BLANCO)
 
     # Lógica del submenú
@@ -223,9 +225,9 @@ def mostrar_controles():
 
         # Mostrar los textos y opción volver en pantalla
         pantalla.blit(fondo, (0, 0))
-        pantalla.blit(texto_controles, (200, 200))
-        pantalla.blit(texto_flechas, (200, 300))
-        pantalla.blit(texto_pausa, (200, 400))
+        pantalla.blit(texto_controles, (150, 200))
+        pantalla.blit(texto_flechas, (150, 300))
+        pantalla.blit(texto_pausa, (150, 400))
         pantalla.blit(opcion_volver, (600, 500))
         mostrar_texto_dificultad(pantalla, "Fácil", fuente)
 
@@ -233,7 +235,7 @@ def mostrar_controles():
         clock.tick(30)
 
 
-##### Al abrir el menú
+# Al abrir el menú
 # Cargar efectos de sonido
 efectos_sonido = cargar_efectos_sonido()
 
@@ -242,4 +244,3 @@ reproducir_musica()
 
 # Llamar a la función para mostrar el menú principal
 mostrar_menu(efectos_sonido)  # Con efectos de sonido
-#####

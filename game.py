@@ -2,7 +2,7 @@
 """
 Estudiante: José Andrés Rodríguez Vásquez B46007.
 Esta es una versión del videojuego Snake creada en Python y con
-ayuda de la biblioteca PyGame. Se verificó que el código 
+ayuda de la biblioteca PyGame. Se verificó que el código
 cumpliera con PEP-8 con la herramienta flake8.
 """
 # Se importan las bibliotecas
@@ -36,7 +36,7 @@ sonido_comer = pygame.mixer.Sound("comida.mp3")
 sonido_chocar = pygame.mixer.Sound("choque.mp3")
 
 
-########## Función principal del juego
+# Función principal del juego
 def juego():
     # Obtener la dificultad (desde el menú)
     dificultad = sys.argv[1]
@@ -81,7 +81,8 @@ def juego():
                     event.key == pygame.K_RIGHT and direccion != "izquierda"
                 ):  # Presionar la flecha izquierda
                     direccion = "derecha"
-                elif event.key == pygame.K_SPACE:  # Pausar con la tecla espacio
+                elif event.key == pygame.K_SPACE:
+                    # Pausar con la tecla espacio
                     pausa = not pausa
 
         # Pausa del juego
@@ -100,7 +101,7 @@ def juego():
             cabeza_y += TAM_BLOQUE  # Aumenta coordenada y
 
         # Verificar colisiones con los bordes
-        if cabeza_x < 0 or cabeza_x >= ANCHO or cabeza_y < 0 or cabeza_y >= ALTO:
+        if cabeza_x < 0 or cabeza_x >= ANCHO or cabeza_y < 0 or cabeza_y >= ALTO: # noqa
             juego_terminado = True  # Termina el juego
             sonido_chocar.play()  # Reproducir efecto de sonido al chocar
 
@@ -132,7 +133,7 @@ def juego():
         # Dibujar la serpiente
         for segmento in serpiente:
             pygame.draw.rect(
-                ventana, VERDE, (segmento[0], segmento[1], TAM_BLOQUE, TAM_BLOQUE)
+                ventana, VERDE, (segmento[0], segmento[1], TAM_BLOQUE, TAM_BLOQUE) # noqa
             )
 
         # Dibujar la comida
@@ -158,9 +159,6 @@ def juego():
 
     # Cerrar el juego (Pygame)
     pygame.quit()
-
-
-########## Función principal del juego
 
 
 # Función para generar comida en una posición aleatoria
@@ -196,9 +194,10 @@ def mostrar_score_al_perder(score):
 # Función para obtener el highscore guardado
 def obtener_highscore():
     try:
-        with open("highscore.txt", "r") as archivo:  # Archivo para guardar el highscore
+        # Archivo para guardar el highscore
+        with open("highscore.txt", "r") as archivo:
             highscore = int(archivo.read())  # Leer el archivo y pasar a entero
-    except FileNotFoundError:  # En caso de error (archivo dañado o inexistente)
+    except FileNotFoundError:  # En caso de error (archivo inexistente)
         highscore = 0
     return highscore
 
